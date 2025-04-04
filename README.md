@@ -48,28 +48,51 @@ tinycoders/ │ ├── templates/
    python app.py
 
 🔑 API Endpoints
+
 Endpoint	          Method	      Description
+
 /register	          POST	        Register a new user
+
 /login	            POST        	Login and get JWT token
+
 /get_disaster_data	POST	        Send lat/lon and get disaster prediction
+---
+
 
 🧠 Machine Learning
+
 + A dummy dataset is created using random values to train a Random Forest model.
+
 + Predictions are made on incoming data from OpenWeather and simulated sensors.
+
 + Output includes disaster risks and advice.
+---
 
 🔒 User Authentication
+
 + Users can register and login.
+
 + Passwords are hashed using Bcrypt.
+
 + JWT tokens are generated for secure access to protected routes.
+---
 
 🌐 Pages
+
 / - Home
+
 /login - Login Page
+
 /sign - Signup Page
+
 /about - About Project
+
 /feedback - Feedback Form
 
+---
+
 📬 Contact
+
 Created by Tushar Bharambe
+
 GitHub: @tusharbharambe2005
