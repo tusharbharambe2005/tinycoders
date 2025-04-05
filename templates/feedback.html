@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="feedback.css">
+    <title>Feedback Page</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/sign">Signup</a>
+        <a href="/feedback">Feedback</a>
+    </div>
+    <div class="abcxyz">
+        <div class="signup-container">
+            <h1 class="form-title">We Value Your Feedback</h1>
+            <form id="feedbackForm">
+                <div class="input-group">
+                    <label for="name" class="label">Your Name</label>
+                    <input type="text" id="name" name="name" class="text-field" required placeholder="Enter your name">
+                </div>
+
+                <div class="input-group">
+                    <label for="email" class="label">Your Email</label>
+                    <input type="email" id="email" name="email" class="text-field" required
+                        placeholder="Enter your email">
+                </div>
+
+                <div class="input-group">
+                    <label for="feedback" class="label">Your Feedback</label>
+                    <textarea id="feedback" name="feedback" class="text-field" rows="5" required
+                        placeholder="Share your thoughts..."></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="signup-button">Submit Feedback</button>
+                </div>
+
+                <div id="responseMessage"></div> <!-- For displaying success or error messages -->
+            </form>
+        </div>
+    </div>
+    <script>
+        // JavaScript for form validation and storing feedback in localStorage
+        document.getElementById('feedbackForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const feedback = document.getElementById('feedback').value;
+
+            // Client-side validation: Check if any field is empty
+            if (!name || !email || !feedback) {
+                document.getElementById('responseMessage').innerHTML = "<p class='error-message'>Please fill in all fields.</p>";
+                return;
+            }
+
+            // Create a feedback object
+            const feedbackData = {
+                name: name,
+                email: email,
+                feedback: feedback,
+                date: new Date().toLocaleString()
+            };
+
+            // Save feedback data in localStorage (simulating database storage)
+            let feedbacks = JSON.parse(localStorage.getItem('feedbacks')) || [];
+            feedbacks.push(feedbackData);
+            localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+
+            // Display success message
+            document.getElementById('responseMessage').innerHTML = "<p class='success-message'>Feedback submitted successfully!</p>";
+
+            // Reset the form
+            document.getElementById('feedbackForm').reset();
+        });
+    </script>
+</body>
+<style>
+    /* Full-screen dark theme */
+    body {
+        background-color: #121212;
+        color: white;
+        font-family: "Arial", sans-serif;
+
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    .abcxyz {
+        margin-top: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar {
+        width: 100%;
+        background-color: #1e1e1e;
+
+        top: 0;
+        left: 0;
+        padding: 15px 0;
+        box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
+        text-align: right;
+        z-index: 1000;
+    }
+
+    .navbar a {
+        color: #00ffff;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0 15px;
+        font-size: 18px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .navbar a:hover {
+        color: #ff8c00;
+        text-shadow: 0 0 10px #ff8c00;
+    }
+
+    /* Main container */
+    .signup-container {
+        background: rgba(25, 25, 25, 0.95);
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        width: 90%;
+        max-width: 450px;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Title with neon effect */
+    .form-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #00ffff;
+        /* Cyan */
+        text-shadow: 0 0 10px #00ffff, 0 0 20px #008b8b;
+        margin-bottom: 20px;
+    }
+
+    /* Label and input field styling */
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    .label {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        text-align: left;
+        color: #00ffff;
+        /* Cyan */
+    }
+
+    /* Input field styling */
+    .text-field {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        color: black;
+        background: white;
+        box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .text-field:focus {
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+        transform: scale(1.03);
+    }
+
+    /* Button Group */
+    .button-group {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    /* Submit Button */
+    .signup-button {
+        background: linear-gradient(45deg, #007bff, #8a2be2);
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .signup-button:hover {
+        background: linear-gradient(45deg, #8a2be2, #007bff);
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+    }
+
+    .signup-button:disabled {
+        background: rgba(0, 255, 255, 0.3);
+        cursor: not-allowed;
+    }
+
+    /* Error message */
+    .error-message {
+        color: #ff4b2b;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+</style>
+
+</html>

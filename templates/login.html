@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: "Arial", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #1e1e1e;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
+            text-align: right;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #00ffff;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            color: #ff8c00;
+            text-shadow: 0 0 10px #ff8c00;
+        }
+
+        .login-container {
+            background: rgba(20, 20, 20, 0.95);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            animation: fadeIn 0.5s ease-in-out;
+            margin-top: 80px;
+            /* Added margin to prevent overlap with navbar */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #008b8b;
+            margin-bottom: 20px;
+        }
+
+        .form-field {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-field input {
+            width: 100%;
+            max-width: 300px;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: black;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-field input:focus {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+            transform: scale(1.02);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .login-btn {
+            background: linear-gradient(45deg, #007bff, #8a2be2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .login-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #007bff, 0 0 30px #8a2be2;
+        }
+
+        .signup-link {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #ff8c00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/sign">Signup</a>
+    </div>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <div class="form-field">
+            <input type="text" id="login-username" placeholder="Username" required>
+        </div>
+        <div class="form-field">
+            <input type="password" id="login-password" placeholder="Password" required>
+        </div>
+        <div class="button-group">
+            <button class="login-btn" onclick="login()">Login</button>
+        </div>
+        <p class="signup-link">Don't have an account? <a href="/sign">Signup</a></p>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

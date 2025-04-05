@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: "Arial", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #1e1e1e;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
+            text-align: right;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #00ffff;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            color: #ff8c00;
+            text-shadow: 0 0 10px #ff8c00;
+        }
+
+        .signup-container {
+            background: rgba(25, 25, 25, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+            animation: fadeIn 0.5s ease-in-out;
+            margin-top: 80px;
+            /* Added margin to avoid overlap with navbar */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #008b8b;
+            margin-bottom: 20px;
+        }
+
+        .text-field {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: black;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3);
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 15px;
+        }
+
+        .text-field:focus {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+            transform: scale(1.03);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .signup-button {
+            background: linear-gradient(45deg, #007bff, #8a2be2);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .signup-button:hover {
+            background: linear-gradient(45deg, #8a2be2, #007bff);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+
+        .signup-button:disabled {
+            background: rgba(0, 255, 255, 0.3);
+            cursor: not-allowed;
+        }
+
+        .error-message {
+            color: #ff4b2b;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .login-link a {
+            color: #ff8c00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/sign">Signup</a>
+    </div>
+
+    <div class="signup-container">
+        <h2 class="form-title">Signup</h2>
+        <input type="text" id="signup-username" class="text-field" placeholder="Username" required>
+        <input type="email" id="signup-email" class="text-field" placeholder="Email" required>
+        <input type="password" id="signup-password" class="text-field" placeholder="Password" required>
+        <div class="button-group">
+            <button class="signup-button" onclick="signup()">Signup</button>
+        </div>
+        <p class="login-link">Already have an account? <a href="/login">Login</a></p>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

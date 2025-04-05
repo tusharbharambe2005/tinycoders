@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Map</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Disaster-Prone Areas Map</h1>
+        <div id="map" style="height: 500px; width: 100%;"></div>
+        <a href="/">Back to Home</a>
+    </div>
+    <script>
+        //const lat = {{ lat | tojson }};
+        //const lon = {{ lon | tojson }};
+        //const predictions = {{ predictions | tojson }};
+
+        const map = L.map('map').setView([lat[0], lon[0]], 10);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        for (let i = 0; i < lat.length; i++) {
+            const marker = L.marker([lat[i], lon[i]], {
+                icon: L.icon({
+                    iconUrl: predictions[i] === 1 ? 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-red.png' : 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-green.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41]
+                })
+            }).addTo(map);
+            marker.bindPopup(predictions[i] === 1 ? 'Disaster Prone' : 'Safe');
+        }
+    </script>
+</body>
+</html>
